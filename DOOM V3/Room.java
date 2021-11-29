@@ -3,11 +3,11 @@ package doom;
 import doom.doomcharacters.Follower;
 import doom.doomcharacters.Monster;
 import doom.doomcharacters.Player;
+import doom.doomcharacters.TimeBomb;
 
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
@@ -16,11 +16,11 @@ public class Room {
     public final int WIDTH = 100;
     private Random random = new Random();
     private Player player = new Player(HEIGHT / 2, WIDTH / 2);
-    public Monster[] monsters = new Monster[20];
-    public Follower[] followers = new Follower[5];
-    public TimeBomb[] timeBombs = new TimeBomb[3];
+    public Monster[] monsters = new Monster[15];
+    public Follower[] followers = new Follower[8];
+    public TimeBomb[] timeBombs = new TimeBomb[5];
     private char[][] floorPlan;
-    char counter = '5';
+    char counter = '9';
     LocalDate localDate = LocalDate.now();
     LocalTime localTime = LocalTime.now();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
@@ -79,6 +79,7 @@ public class Room {
     }
 
     public void updateMonster() {
+        boolean timeatzero = false;
 
         for (Monster monster : monsters) {
             floorPlan[monster.getX()][monster.getY()] = ' ';
@@ -92,13 +93,17 @@ public class Room {
             floorPlan[follower.getX()][follower.getY()] = follower.toString().charAt(0);
         }
         if (counter < '0') {
-            counter = '5';
+            counter = ' ';
+            timeatzero = true;
         }
         for (TimeBomb timeBomb : timeBombs) {
             floorPlan[timeBomb.getX()][timeBomb.getY()] = ' ';
             floorPlan[timeBomb.getX()][timeBomb.getY()] = counter;
 
-        } counter --;
+        }
+        if (!timeatzero) {
+            counter --;
+        }
 
     }
 

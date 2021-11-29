@@ -1,14 +1,17 @@
 package doom.doomcharacters;
 
 
+import java.util.Date;
 
 public class Player extends DoomCharacter {
-    public final double START_HEALTH = 50;
+    public final double START_HEALTH = 20;
     private double health;
+    Date startDate = new Date();
 
 
 
     public Player(int x, int y) {
+
         super(x,y);
         this.health = START_HEALTH;
 
@@ -28,8 +31,11 @@ public class Player extends DoomCharacter {
         boolean dead;
         if (health <= 0) {
             System.out.println("You died");
+            Date endDate = new Date();
+            int numSeconds = (int)((endDate.getTime()-startDate.getTime())/1000);
+            System.out.println("You survived " + numSeconds + " seconds!");
             dead = true;
-            System.exit(2);
+            System.exit(0);
         } else {
             dead = false;
         }

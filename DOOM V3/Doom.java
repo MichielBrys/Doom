@@ -3,6 +3,9 @@ package doom;
 import doom.doomcharacters.Follower;
 import doom.doomcharacters.Monster;
 import doom.doomcharacters.Player;
+import doom.doomcharacters.TimeBomb;
+
+import java.util.Date;
 
 public class Doom {
     private Room room;
@@ -21,6 +24,7 @@ public class Doom {
     }
 
     public void start() {
+
         room.makeMonsters();
         player = room.getPlayer();
         monsters = room.getMonster();
@@ -49,5 +53,6 @@ public class Doom {
                 e.printStackTrace();
             }
         }
+
     }
 }
