@@ -5,7 +5,7 @@ import doom.doomcharacters.Player;
 
 import java.util.Random;
 
-/*public class TimeBomb extends Monster {
+public class TimeBomb extends Monster {
     private final double BOMB_STRENGTH = 3;
     private int startTime;
     private int endTime;
@@ -16,14 +16,14 @@ import java.util.Random;
     }
     @Override
     public void attackPlayer(Player player) {
-        for (int startTime = random.nextInt(5)+5; startTime <= 0 ; startTime--) {
+       /*for (int startTime = random.nextInt(5)+5; startTime <= 0 ; startTime--) {
             System.out.println(startTime);
             try {
-                Thread.sleep(1000);
+                Thread.sleep(5000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            }
-        }
+            }*/
+
         if (Math.abs(this.getX() - player.getX()) <= 5)
             if (Math.abs(this.getY() - player.getY()) <= 5) {
                 System.out.println("BOOOOOOOOOOOOM");
@@ -31,13 +31,10 @@ import java.util.Random;
             }
 
 
-    }
-    public int countdown(int x, int y){
-        return 5;
+
     }
     @Override
     public String toString(){
         return "T";
     }
 }
-*/

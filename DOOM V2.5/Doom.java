@@ -9,6 +9,7 @@ public class Doom {
     private Player player;
     private Monster[] monsters;
     private Follower[] followers;
+    private TimeBomb[] timeBombs;
 
     public Doom() {
         room = new Room();
@@ -20,9 +21,11 @@ public class Doom {
     }
 
     public void start() {
+        room.makeMonsters();
         player = room.getPlayer();
         monsters = room.getMonster();
         followers = room.getFollowers();
+        timeBombs = room.getTimeBombs();
         room.createFloorPlan();
         while (!(isFinished())) {
             room.updateMonster();
@@ -33,6 +36,9 @@ public class Doom {
             }
             for (Follower follower : followers){
                 follower.attackPlayer(player);
+            }
+            for (TimeBomb timeBomb : timeBombs){
+                timeBomb.attackPlayer(player);
             }
 
             player.isDead();
