@@ -32,13 +32,13 @@ public class Doom {
             room.update();
             room.draw();
             for (Monster monster : monsters) {
-                monster.attackPlayer(player);
+                monster.attackPlayer();
             }
             for (Follower follower : followers){
-                follower.attackPlayer(player);
+                follower.attackPlayer();
             }
             for (TimeBomb timeBomb : timeBombs){
-                timeBomb.attackPlayer(player);
+                timeBomb.attackPlayer();
             }
 
             player.isDead();

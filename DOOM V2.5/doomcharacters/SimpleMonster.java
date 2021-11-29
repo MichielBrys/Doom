@@ -1,8 +1,8 @@
 package doom.doomcharacters;
 
 public class SimpleMonster extends Monster{
-    public SimpleMonster(int x, int y){
-        super(x,y);
+    public SimpleMonster(Player player,int x, int y){
+        super(player,x,y);
     }
     public void attackPlayer(Player player){
             if (Math.abs(this.getX() - player.getX()) <= 2)

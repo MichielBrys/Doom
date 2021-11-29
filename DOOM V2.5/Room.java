@@ -5,6 +5,10 @@ import doom.doomcharacters.Monster;
 import doom.doomcharacters.Player;
 
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
 public class Room {
@@ -17,6 +21,10 @@ public class Room {
     public TimeBomb[] timeBombs = new TimeBomb[3];
     private char[][] floorPlan;
     char counter = '5';
+    LocalDate localDate = LocalDate.now();
+    LocalTime localTime = LocalTime.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+
 
 
     public Room() {
@@ -26,15 +34,15 @@ public class Room {
 
     public void makeMonsters() {
         for (int i = 0; i < monsters.length; i++) {
-            monsters[i] = new Monster(HEIGHT - random.nextInt(12) - 2, WIDTH - random.nextInt(95) - 2);
+            monsters[i] = new Monster(player,HEIGHT - random.nextInt(12) - 2, WIDTH - random.nextInt(95) - 2);
             monsters[i].setRoom(this);
         }
         for (int i = 0; i < followers.length; i++) {
-            followers[i] = new Follower(HEIGHT - random.nextInt(12) - 2, WIDTH - random.nextInt(95) - 2);
+            followers[i] = new Follower(player,HEIGHT - random.nextInt(12) - 2, WIDTH - random.nextInt(95) - 2);
             followers[i].setRoom(this);
         }
         for (int i = 0; i < timeBombs.length; i++) {
-            timeBombs[i] = new TimeBomb(HEIGHT - random.nextInt(12) - 2, WIDTH - random.nextInt(95) - 2);
+            timeBombs[i] = new TimeBomb(player,HEIGHT - random.nextInt(12) - 2, WIDTH - random.nextInt(95) - 2);
             timeBombs[i].setRoom(this);
         }
 
@@ -75,13 +83,13 @@ public class Room {
         for (Monster monster : monsters) {
             floorPlan[monster.getX()][monster.getY()] = ' ';
             monster.move();
-            floorPlan[monster.getX()][monster.getY()] = 'M';
+            floorPlan[monster.getX()][monster.getY()] = monster.toString().charAt(0);
 
         }
         for (Follower follower : followers) {
             floorPlan[follower.getX()][follower.getY()] = ' ';
-            follower.movefollower(player);
-            floorPlan[follower.getX()][follower.getY()] = 'F';
+            follower.movefollower();
+            floorPlan[follower.getX()][follower.getY()] = follower.toString().charAt(0);
         }
         if (counter < '0') {
             counter = '5';
@@ -104,7 +112,7 @@ public class Room {
             System.out.println();
         }
         System.out.println();
-        System.out.printf("\nHealth: %2.0f\n", player.getHealth());
+        System.out.printf("%s\t\t\t\t%s \t\t\t\tHealth: %2.0f \n ",localTime.format(formatter), localDate,player.getHealth());
         if (isFinished()) {
             System.out.println("AAAAAAAAAAAAAA IM DEAD");
         }

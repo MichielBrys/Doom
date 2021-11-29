@@ -4,14 +4,15 @@ import doom.Room;
 
 public class Follower extends SimpleMonster{
     private Room room;
-    public Follower(int x, int y){
-        super(x,y);
+    public Follower(Player player,int x, int y){
+        super(player,x,y);
+
     }
     public void setRoom(Room room){
         this.room = room;
     }
 
-    public void movefollower(Player player){
+    public void movefollower(){
         while(true) {
             int xMove = 0;
             int yMove = 0;

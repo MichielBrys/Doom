@@ -11,11 +11,11 @@ public class TimeBomb extends Monster {
     private int endTime;
     private Random random = new Random();
 
-    public TimeBomb(int x, int y){
-        super(x,y);
+    public TimeBomb(Player player,int x, int y){
+        super(player,x,y);
     }
     @Override
-    public void attackPlayer(Player player) {
+    public void attackPlayer() {
        /*for (int startTime = random.nextInt(5)+5; startTime <= 0 ; startTime--) {
             System.out.println(startTime);
             try {

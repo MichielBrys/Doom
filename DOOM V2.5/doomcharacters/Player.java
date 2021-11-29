@@ -1,6 +1,6 @@
 package doom.doomcharacters;
 
-import doom.doomcharacters.DoomCharacter;
+
 
 public class Player extends DoomCharacter {
     public final double START_HEALTH = 50;
